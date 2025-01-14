@@ -11,9 +11,11 @@ export const register = async (req, res) => {
 	try {
 		const token = await registerUser(req.body);
 		res.cookie("token", token, COOKIE_OPTIONS);
-		res.status(201).json({ message: "User registered successfully" });
+		res
+			.status(201)
+			.json({ message: "User registered successfully", status: "success" });
 	} catch (error) {
-		res.status(400).json({ message: error.message });
+		res.status(400).json({ message: error.message, status: "error" });
 	}
 };
 
@@ -21,13 +23,19 @@ export const login = async (req, res) => {
 	try {
 		const token = await loginUser(req.body);
 		res.cookie("token", token, COOKIE_OPTIONS);
-		res.status(200).json({ message: "Login Successful" });
+		res.status(200).json({ message: "Login Successful", status: "success" });
 	} catch (error) {
-		res.status(400).json({ message: error.message });
+		res.status(400).json({ message: error.message, status: "error" });
 	}
 };
 
 export const logout = (req, res) => {
 	res.clearCookie("token");
-	res.status(200).json({ message: "Logged out successfully" });
+	res
+		.status(200)
+		.json({ message: "Logged out successfully", status: "success" });
+};
+
+export const validateToken = (req, res) => {
+	return res.status(200).json({ message: "Token is valid", status: "success" });
 };

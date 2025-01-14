@@ -2,6 +2,10 @@ import { useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { TbLockPassword } from "react-icons/tb";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
+import useApi from "../../hooks/useApi";
+import API_URLS from "../../constants/apiUrls";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
 	const [formData, setFormData] = useState({
@@ -10,15 +14,25 @@ const Signup = () => {
 		firstName: "",
 		lastName: "",
 	});
-	const [message, setMessage] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+
+	let { request } = useApi();
+
+	let navigate = useNavigate();
 
 	const handleChangeInput = (e) => {
 		setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 
-	const handleSignup = (e) => {
+	const handleSignup = async (e) => {
 		e.preventDefault();
+		try {
+			let data = await request("POST", API_URLS.AUTH.SIGNUP, formData);
+			if (data?.status === "success") {
+				navigate("/dashboard");
+			} else {
+			}
+		} catch (error) {}
 	};
 
 	return (
@@ -36,10 +50,14 @@ const Signup = () => {
 						<div>
 							<label htmlFor="firstName">First Name</label>
 							<div className="relative mt-1">
+								<span className="absolute left-0 inset-y-0 flex items-center pl-3">
+									<CgProfile className="text-gray-400" />
+								</span>
 								<input
 									id="firstName"
 									type="text"
 									name="firstName"
+									required
 									className="w-full pl-10 border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
 									value={formData.firstName}
 									onChange={handleChangeInput}
@@ -49,6 +67,9 @@ const Signup = () => {
 						<div>
 							<label htmlFor="lastName">Last Name</label>
 							<div className="relative mt-1">
+								<span className="absolute left-0 inset-y-0 flex items-center pl-3">
+									<CgProfile className="text-gray-400" />
+								</span>
 								<input
 									id="lastName"
 									className="w-full pl-10 border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
@@ -56,6 +77,7 @@ const Signup = () => {
 									name="lastName"
 									value={formData.lastName}
 									onChange={handleChangeInput}
+									required
 								/>
 							</div>
 						</div>
@@ -118,7 +140,6 @@ const Signup = () => {
 						</button>
 					</div>
 				</form>
-				{message && <p>{message}</p>}
 			</div>
 		</div>
 	);
