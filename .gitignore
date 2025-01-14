@@ -1,0 +1,66 @@
+# Node.js dependencies (root level)
+node_modules/
+
+# Client-side dependencies (Vite.js)
+client/node_modules/
+
+# Build directories
+client/build/
+client/dist/
+client/public/
+
+# Vite.js build output
+client/.vite/
+
+# Vite.js generated files
+client/.vitepress/
+client/.cache/
+
+# React and Next.js build output (if applicable)
+client/.next
+client/out
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript build files (if applicable)
+client/*.tsbuildinfo
+server/*.tsbuildinfo
+
+# Environment files (shared)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Backend build output (Node.js)
+server/build/
+server/dist/
+
+# VSCode settings
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# MacOS Finder files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# npm and yarn lock files (client-specific)
+client/package-lock.json
+client/yarn.lock
+
+# Test coverage (if applicable)
+client/coverage/
+
+# Docker-related files (if applicable)
+docker-compose.yml
+Dockerfile
