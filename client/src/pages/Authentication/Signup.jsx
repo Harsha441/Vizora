@@ -6,6 +6,8 @@ import { CgProfile } from "react-icons/cg";
 import useApi from "../../hooks/useApi";
 import API_URLS from "../../constants/apiUrls";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { showToast } from "../../redux/reducers/toastSlice";
 
 const Signup = () => {
 	const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ const Signup = () => {
 		firstName: "",
 		lastName: "",
 	});
+	let dispatch = useDispatch();
 	const [showPassword, setShowPassword] = useState(false);
 
 	let { request } = useApi();
@@ -28,6 +31,7 @@ const Signup = () => {
 		e.preventDefault();
 		try {
 			let data = await request("POST", API_URLS.AUTH.SIGNUP, formData);
+			dispatch(showToast({ message: data?.message, type: data?.status }));
 			if (data?.status === "success") {
 				navigate("/dashboard");
 			} else {

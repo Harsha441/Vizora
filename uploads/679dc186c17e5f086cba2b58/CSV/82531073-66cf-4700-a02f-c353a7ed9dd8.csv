@@ -1,0 +1,11 @@
+EmployeeID,FirstName,LastName,Email,Department,JobTitle,Salary,JoiningDate
+101,John,Doe,john.doe@example.com,Engineering,Software Engineer,75000,2020-06-15
+102,Jane,Smith,jane.smith@example.com,Marketing,Marketing Manager,65000,2019-04-22
+103,Michael,Brown,michael.brown@example.com,HR,HR Specialist,55000,2021-01-10
+104,Emily,Davis,emily.davis@example.com,Finance,Accountant,60000,2018-09-05
+105,David,Wilson,david.wilson@example.com,Engineering,Senior Developer,90000,2016-11-20
+106,Sarah,Lee,sarah.lee@example.com,Sales,Sales Executive,50000,2022-03-18
+107,James,White,james.white@example.com,Support,Customer Support,45000,2023-07-12
+108,Laura,Martinez,laura.martinez@example.com,Marketing,SEO Specialist,62000,2020-08-25
+109,Robert,Anderson,robert.anderson@example.com,IT,System Administrator,70000,2017-05-30
+110,Emma,Thomas,emma.thomas@example.com,Engineering,Frontend Developer,80000,2021-12-01

@@ -7,6 +7,10 @@ const API_URLS = {
 		LOGOUT: `${BASE_URL}/auth/logout`,
 		VALIDATE: `${BASE_URL}/auth/validate`,
 	},
+	DATASOURCES: {
+		UPLOADFILE: `${BASE_URL}/uploadFile/uploadFile`,
+		GETDATASOURCES: `${BASE_URL}/getDatasources`,
+	},
 };
 
 export default API_URLS;

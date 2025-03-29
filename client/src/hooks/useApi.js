@@ -5,7 +5,7 @@ const useApi = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 
-	const request = async (method, url, data = {}, params = {}) => {
+	const request = async (method, url, data = {}, params = {}, headers = {}) => {
 		console.log(" inside request", data);
 		setLoading(true);
 		setError(null);
@@ -15,6 +15,7 @@ const useApi = () => {
 				url,
 				data,
 				params,
+				headers,
 			});
 			return response.data; // Return the response payload
 		} catch (err) {

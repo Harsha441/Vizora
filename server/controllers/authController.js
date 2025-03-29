@@ -15,7 +15,7 @@ export const register = async (req, res) => {
 			.status(201)
 			.json({ message: "User registered successfully", status: "success" });
 	} catch (error) {
-		res.status(400).json({ message: error.message, status: "error" });
+		res.status(200).json({ message: error.message, status: "error" });
 	}
 };
 
@@ -25,7 +25,7 @@ export const login = async (req, res) => {
 		res.cookie("token", token, COOKIE_OPTIONS);
 		res.status(200).json({ message: "Login Successful", status: "success" });
 	} catch (error) {
-		res.status(400).json({ message: error.message, status: "error" });
+		res.status(200).json({ message: error.message, status: "error" });
 	}
 };
 

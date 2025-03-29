@@ -5,9 +5,12 @@ import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { useNavigate } from "react-router";
 import useApi from "../../hooks/useApi";
 import API_URLS from "../../constants/apiUrls";
+import { useDispatch } from "react-redux";
+import { showToast } from "../../redux/reducers/toastSlice";
 
 const Login = () => {
 	let navigate = useNavigate();
+	let dispatch = useDispatch();
 
 	let { request, loading, error } = useApi();
 
@@ -24,14 +27,16 @@ const Login = () => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-
-		console.log(" inside handleLogin", formData);
 		const { email, password } = formData;
 		try {
 			let data = await request("POST", API_URLS.AUTH.LOGIN, {
 				email,
 				password,
 			});
+			dispatch(showToast({ message: data?.message, type: data?.status }));
+			if (data?.status === "success") {
+				navigate("/dashboard");
+			}
 			console.log(data);
 		} catch (error) {
 			console.log({ error });

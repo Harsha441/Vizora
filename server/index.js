@@ -5,6 +5,8 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import datasourcesRoutes from "./routes/datasourceRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -26,6 +28,7 @@ app.use(
 		contentSecurityPolicy: false, // Temporarily disable if needed for debugging
 	})
 );
+app.use("/uploads", express.static("uploads"));
 
 const PORT = process.env.PORT || 5000;
 
@@ -35,3 +38,5 @@ app.listen(PORT, () => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/uploadFile", uploadRoutes);
+app.use("/api/getDatasources", datasourcesRoutes);

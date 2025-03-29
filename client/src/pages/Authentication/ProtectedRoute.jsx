@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import useApi from "../../hooks/useApi";
 import API_URLS from "../../constants/apiUrls";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
 	const [isAuth, setIsAuth] = useState(null); // `null` to show a loading state initially
 
 	let { request } = useApi();
@@ -33,7 +33,7 @@ const ProtectedRoute = ({ children }) => {
 		return <div>Loading...</div>; // Optional: Add a loading spinner here
 	}
 
-	return isAuth ? children : <Navigate to="/login" replace />;
+	return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
